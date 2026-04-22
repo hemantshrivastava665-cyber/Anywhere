@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Game Details</title>
+
+<style>
+body{
+margin:0;
+font-family:Arial;
+background:#0b0f1a;
+color:white;
+text-align:center;
+}
+
+.container{
+padding:20px;
+}
+
+h2{
+color:#00ffcc;
+}
+
+img{
+width:90%;
+border-radius:15px;
+margin-top:10px;
+}
+
+p{
+color:#ccc;
+}
+
+button{
+padding:12px 20px;
+margin-top:15px;
+background:#00ffcc;
+border:none;
+border-radius:10px;
+font-weight:bold;
+cursor:pointer;
+}
+
+#timer{
+margin-top:10px;
+color:#00ffcc;
+font-weight:bold;
+}
+
+/* suggestion box */
+.sug{
+text-align:left;
+margin-top:30px;
+padding:10px;
+}
+
+.box{
+background:#141c2e;
+padding:10px;
+margin-top:10px;
+border-radius:10px;
+}
+</style>
+
+</head>
+<body>
+
+<div class="container">
+
+<h2 id="title">Game</h2>
+
+<img src="https://via.placeholder.com/500x250">
+
+<p>Best high graphics mobile gaming experience.</p>
+
+<button onclick="download()">⬇ Download</button>
+
+<p id="timer"></p>
+
+<div class="sug">
+<h3 style="color:#00ffcc;">🔥 Suggestions</h3>
+
+<div class="box">Gta sa</div>
+<div class="box">Minecraft</div>
+<div class="box">Shadow fight 4: Arena</div>
+<div class="box">Offline Mission</div>
+
+</div>
+
+</div>
+
+<script>
+
+/* GET GAME FROM URL */
+const params = new URLSearchParams(window.location.search);
+const game = params.get("g");
+
+let title = document.getElementById("title");
+
+/* PLAY STORE LINKS */
+let link = "https://play.google.com/store";
+
+if(game === "Gta SA"){
+title.innerText = "Gta SA";
+link = "https://play.google.com/store/apps/details?id=com.rockstargames.gtasa";
+}
+else if(game === "Minecraft"){
+title.innerText = "Minecraft";
+link = "https://play.google.com/store/apps/details?id=com.mojang.minecraftpe";
+}
+else if(game === "Shadow Fight 4: Arena"){
+title.innerText = "Shadow Fight 4: Arena";
+link = "https://play.google.com/store/apps/details?id=com.nekki.shadowfightarena";
+}
+else{
+title.innerText = "Game Details";
+}
+
+/* DOWNLOAD FUNCTION */
+function download(){
+let t = 5;
+let timer = document.getElementById("timer");
+
+let x = setInterval(()=>{
+timer.innerHTML = "Opening Play Store in " + t + " sec...";
+t--;
+
+if(t < 0){
+clearInterval(x);
+window.open(link, "_blank");
+}
+},1000);
+}
+
+</script>
+
+</body>
+</html>
